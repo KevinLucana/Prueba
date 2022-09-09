@@ -2,15 +2,14 @@
 #include <fstream>
 using namespace std;
 
-void mostrar (int t[], int r[],double pe[],int cliente, string c[] ,string p[]){
+void mostrar (int t[], int r[],double pe[],int cliente, string c[] ,string p[],int dwa){
     const int bb {13000};
-    int filas {120};
     int s {0}; 
     int dim {5};
     double re[dim] {};
     cout <<"Cliente :"<<c[cliente] << ": " << endl;
     while (s < dim){
-        for (int x = 0; x < filas; x++){//
+        for (int x = 0; x < dwa; x++){//
             r[x] == s && t[x] == cliente ? re[s] += pe[x] : 0;
         }
         if (re[s] > bb){
@@ -58,8 +57,8 @@ int main(){
     int filas {dw};
     int columnas {4};
     double f[dw][columnas];
-    float pes;
-    float dis;
+    float pes ,dis;
+
     for (int a = 0; a < dw; a++){
         for (int b = 0; b < columnas; b++){
             archilec >> f[a][b];
@@ -69,8 +68,8 @@ int main(){
     double re[col] {};
     //Punto 1
     int kva {120};
-    int t[kva]; //clientes
-    int r[kva]; //productos
+    int t[kva]; //Clientes
+    int r[kva]; //Productos
     double pe[kva];
     for (int d = 0; d < 120; d++){
         t[d] = f[d][0];
@@ -78,7 +77,7 @@ int main(){
         pe[d] = f[d][2];
     }
     //Punto 2
-    int s {0}; //bi cliente
+    int s {0};
     while (s < col){
         for (int x = 0; x < dw; x++){//
             f[x][1] == s && f[x][0] == 1 ? re[s] += f[x][3] : 0;
@@ -93,16 +92,8 @@ int main(){
     //Mostrar
     cout << "Listado por clientes, de los tipos de productos que superan los 13000 kg acumulados: " << endl;
     for(int w{};w<fil;w++){
-        mostrar(t,r,pe,w,c,p);
+        mostrar(t,r,pe,w,c,p,dw);
     }
-   /* mostrar (t,r,pe,0,c,p);
-    mostrar (t,r,pe,1,c,p);
-    mostrar (t,r,pe,2,c,p);
-    mostrar (t,r,pe,3,c,p);
-    mostrar (t,r,pe,4,c,p);
-    mostrar (t,r,pe,5,c,p);
-    mostrar (t,r,pe,6,c,p);
-    mostrar (t,r,pe,7,c,p);*/
     cout << endl;
     cout << "Listado de km recorridos por tipo de producto(ascendente): " << endl;
     //Funcion
@@ -116,3 +107,4 @@ int main(){
     archiname.close ();
     return 0;
 }
+
